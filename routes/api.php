@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BasketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('/basket', BasketController::class);
+Route::delete('/basket/remove/{product_id}', [BasketController::class, 'remove']);

@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\BasketController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Главная страница
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Просмотр продукта
+Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
+
+// Просмотр профиля
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
+// Корзина
+Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
+Route::get('/basket/clear', [BasketController::class, 'clear'])->name('basket.clear');
+
+// Авторизация пользователей
+Auth::routes();
