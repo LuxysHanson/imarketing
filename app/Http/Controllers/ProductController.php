@@ -10,9 +10,12 @@ class ProductController extends Controller
     public function show(string $slug)
     {
 
-        $product = Product::query()->where('slug', $slug)->firstOrFail();
+        $product = Product::query()
+            ->where('slug', $slug)
+            ->with('fields')
+            ->firstOrFail();
 
-        return view('products.show')->with('product', $product);
+        return view('product.show')->with('product', $product);
     }
 
 }

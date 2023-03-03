@@ -10,7 +10,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        $products = Product::query()->with('category')->paginate(6);
+        $products = Product::query()
+            ->with(['category', 'hasCart'])
+            ->paginate(6);
 
         return view('home', [
             'products' => $products

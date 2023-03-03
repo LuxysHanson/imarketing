@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BasketRequest;
+use App\Http\Requests\BasketCreateRequest;
+use App\Http\Requests\BasketUpdateRequest;
 use App\Models\Basket;
 
 class BasketController extends Controller
 {
 
-    public function store(BasketRequest $request, Basket $basket)
+    public function store(BasketCreateRequest $request, Basket $basket)
     {
 
         $basket->loadData();
@@ -19,10 +20,16 @@ class BasketController extends Controller
         return response()->json($basket);
     }
 
-    public function remove(int $product_id)
+    public function update(BasketUpdateRequest $request, Basket $basket)
     {
-        Basket::query()->where('product_id', $product_id)->delete();
-        return response(null, 204);
+        $basket->update($request->validated());
+        return response()->json($basket);
+    }
+
+    public function destroy(Basket $basket)
+    {
+        $basket->delete();
+        return response()->json([], 204);
     }
 
 }

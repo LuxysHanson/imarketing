@@ -19,7 +19,17 @@ class Product extends Model
 
     public function category()
     {
-        return $this->hasOne(Category::class, 'id', 'category_id');
+        return $this->belongsTo(Category::class);
+    }
+
+    public function fields()
+    {
+        return $this->hasOne(ProductFields::class);
+    }
+
+    public function hasCart()
+    {
+        return $this->hasOne(Basket::class);
     }
 
     public function shortDescription(): string

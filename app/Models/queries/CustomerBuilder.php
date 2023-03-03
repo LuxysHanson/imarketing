@@ -4,7 +4,7 @@ namespace App\Models\queries;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class BasketBuilder extends Builder
+class CustomerBuilder extends Builder
 {
 
     public function byUser(): self

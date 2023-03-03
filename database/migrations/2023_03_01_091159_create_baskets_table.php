@@ -19,16 +19,18 @@ class CreateBasketsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('session_id');
             $table->integer('price');
-            $table->integer('total_count');
+            $table->integer('quantity');
             $table->timestamps();
 
             $table->foreign('product_id')
                 ->references('id')
-                ->on('products');
+                ->on('products')
+                ->restrictOnDelete();
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->restrictOnDelete();
         });
     }
 

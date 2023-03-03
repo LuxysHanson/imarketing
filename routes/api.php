@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Получить текущего пользователя
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
-Route::apiResource('/basket', BasketController::class);
-Route::delete('/basket/remove/{product_id}', [BasketController::class, 'remove']);
+Route::post('/basket', [BasketController::class, 'store']);
+Route::match(['put', 'patch'],'/basket/{basket}', [BasketController::class, 'update']);
+Route::delete('/basket/{basket}', [BasketController::class, 'destroy']);

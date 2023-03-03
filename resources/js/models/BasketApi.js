@@ -7,7 +7,7 @@ export class BasketApi extends Api {
     }
 
     removeItemFromCart = (productId) => {
-        return this.http.delete('/api/basket/remove/' + productId);
+        return this.http.delete('/api/basket/' + productId);
     }
 
 }

@@ -16,12 +16,13 @@ $(function() {
             const data = {
                 product_id: $(this.activeElement).data('id'),
                 price: $(this.activeElement).data('price'),
-                total_count: 1 // пока так, позже можно будет дополнить
+                quantity: 1 // пока так, позже можно будет дополнить
             }
 
             api.addItemToCart(data)
                 .then(response => {
                     if (response.status === 200) {
+                        $(this.activeElement).addClass('disabled');
                         toastr.success('Товар успешно добавлен!')
                     }
                 })
@@ -33,8 +34,8 @@ $(function() {
         removeBasketButton.click((e) => {
             e.preventDefault();
 
-            let productId = $(this.activeElement).data('id');
-            api.removeItemFromCart(productId)
+            let cartId = $(this.activeElement).data('id');
+            api.removeItemFromCart(cartId)
                 .then(response => {
                     if (response.status === 204) {
                         window.location.reload();

@@ -29,7 +29,7 @@
                                             <a href="{{ route('product.show', ['slug' => $product->slug]) }}" class="btn btn-primary mb-2">
                                                 {{ __('Посмотреть продукт') }}
                                             </a>
-                                            <a href="javascript:void(0)" class="btn btn-success btn-add-basket" style="cursor: pointer"
+                                            <a href="javascript:void(0)" class="btn btn-success btn-add-basket {{ $product->hasCart ? 'disabled' : '' }}" style="cursor: pointer"
                                                data-id="{{ $product->id }}" data-price="{{ $product->price }}">
                                                 {{ __('Добавить в корзину') }}
                                             </a>

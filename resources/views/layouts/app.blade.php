@@ -39,7 +39,7 @@
                     <ul class="navbar-nav ms-auto">
 
                         <li class="nav-item">
-                            <a href="{{ route('basket.index') }}" class="nav-link">
+                            <a href="{{ route('cart.index') }}" class="nav-link">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 Корзина
                             </a>
@@ -98,15 +98,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
 
     <script>
-
-        toastr.options = {
-            "closeButton" : true,
-            "progressBar" : true,
-            "timeOut": 25
-        }
 
         @if(Session::has('message'))
         toastr.success("{{ session('message') }}");

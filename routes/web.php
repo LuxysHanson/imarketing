@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\BasketController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +29,12 @@ Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
 // Корзина
-Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
-Route::get('/basket/clear', [BasketController::class, 'clear'])->name('basket.clear');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+
+// Заказы
+Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');
+Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
 
 // Авторизация пользователей
 Auth::routes();
