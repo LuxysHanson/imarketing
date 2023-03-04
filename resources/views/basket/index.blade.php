@@ -21,7 +21,7 @@
                                             <th class="text-center">Количество</th>
                                             <th class="text-center">Промежуточный итог</th>
                                             <th class="text-center">
-                                                <a class="btn btn-sm btn-outline-danger" href="{{ route('cart.clear') }}">
+                                                <a class="btn btn-sm btn-outline-danger" href="{{ route('basket.clear') }}">
                                                     Очистить
                                                 </a>
                                             </th>
@@ -40,7 +40,7 @@
                                                         ?>
                                                         <div class="product-info">
                                                             <h4 class="product-title">
-                                                                <a href="{{ route('product.show', ['slug' => $product->slug]) }}">
+                                                                <a href="{{ route('product.show', $product) }}">
                                                                     {{ $product->title }}
                                                                 </a>
                                                             </h4>

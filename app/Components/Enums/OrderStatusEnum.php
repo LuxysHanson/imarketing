@@ -4,7 +4,7 @@ namespace App\Components\Enums;
 
 use BenSampo\Enum\Enum;
 
-class OrderStatusEnum extends Enum
+final class OrderStatusEnum extends Enum
 {
 
     const STATUS_NEW = 0;

@@ -26,7 +26,7 @@
                                             <p>{{ $product->category->title }}</p>
                                             <p class="card-text">{{ $product->shortDescription() }}</p>
                                             <p>Цена - {{ $product->price }}</p>
-                                            <a href="{{ route('product.show', ['slug' => $product->slug]) }}" class="btn btn-primary mb-2">
+                                            <a href="{{ route('product.show', $product) }}" class="btn btn-primary mb-2">
                                                 {{ __('Посмотреть продукт') }}
                                             </a>
                                             <a href="javascript:void(0)" class="btn btn-success btn-add-basket {{ $product->hasCart ? 'disabled' : '' }}" style="cursor: pointer"

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -23,14 +23,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Просмотр продукта
-Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
 // Просмотр профиля
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
 // Корзина
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
+Route::get('/basket/clear', [BasketController::class, 'clear'])->name('basket.clear');
 
 // Заказы
 Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');

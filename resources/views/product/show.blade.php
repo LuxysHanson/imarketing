@@ -16,23 +16,25 @@
                         <p>{{ $product->description }}</p>
                         <p>Цена - {{ $product->price }}</p>
 
-                        <h5>Дополнительные характеристики</h5>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>Ширина: </td>
-                                <td>{{ $product->fields->width }}</td>
-                            </tr>
-                            <tr>
-                                <td>Высота: </td>
-                                <td>{{ $product->fields->height }}</td>
-                            </tr>
-                            <tr>
-                                <td>Вес: </td>
-                                <td>{{ $product->fields->weight }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        @if($product->fields)
+                            <h5>Дополнительные характеристики</h5>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>Ширина: </td>
+                                    <td>{{ $product->fields->width }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Высота: </td>
+                                    <td>{{ $product->fields->height }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Вес: </td>
+                                    <td>{{ $product->fields->weight }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        @endif
                     </div>
                 </div>
             </div>

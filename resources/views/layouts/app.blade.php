@@ -39,7 +39,7 @@
                     <ul class="navbar-nav ms-auto">
 
                         <li class="nav-item">
-                            <a href="{{ route('cart.index') }}" class="nav-link">
+                            <a href="{{ route('basket.index') }}" class="nav-link">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 Корзина
                             </a>

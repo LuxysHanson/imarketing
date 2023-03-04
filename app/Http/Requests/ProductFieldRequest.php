@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BasketCreateRequest extends FormRequest
+class ProductFieldRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class BasketCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id' => 'required|exists:products,id',
-            'price' => 'required|integer',
-            'quantity' => 'integer'
+            'product_id' => 'required|integer|exists:products,id',
+            'width' => 'string',
+            'height' => 'string',
+            'weight' => 'string',
+            'color' => 'string',
         ];
     }
 }

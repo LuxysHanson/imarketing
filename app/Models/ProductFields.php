@@ -12,6 +12,7 @@ class ProductFields extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'product_id',
         'width',
         'height',
         'weight',
@@ -22,4 +23,5 @@ class ProductFields extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
 }

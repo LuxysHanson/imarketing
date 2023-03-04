@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Components\Repositories\OrderRepository;
 use App\Components\Services\OrderService;
 use App\Http\Requests\OrderRequest;
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class OrderController extends Controller
+class OrderController extends BaseController
 {
     /**
      * @var OrderService
@@ -30,13 +30,10 @@ class OrderController extends Controller
         $this->repository = $orderRepository;
     }
 
-    public function create(Order $order)
+    public function index()
     {
-
-        return view('order.create', [
-            'order' => $order,
-            'user' => Auth::user()
-        ]);
+        $orders = $this->repository->getList();
+        return $this->sendResponse(OrderResource::collection($orders), 'Posts fetched.');
     }
 
     public function store(OrderRequest $request, Order $order)
@@ -44,14 +41,18 @@ class OrderController extends Controller
 
         DB::beginTransaction();
 
-        $orderCreate = $this->repository->dataStorage($request, $order);
-        if (!$orderCreate || !$this->service->makingAnOrder($order)) {
+        if (!$this->repository->dataStorage($request, $order)) {
             DB::rollBack();
-            return back()->with('error', 'Произошла ошибка при оформлении!');
+            return $this->sendError('Failed to save.', [], 500);
+        }
+
+        if (!$this->service->makingAnOrder($order)) {
+            DB::rollBack();
+            return $this->sendError('The basket is empty.');
         }
 
         DB::commit();
-        return redirect()->route('home')->with('message', 'Ваш заказ успешно оформлен!');
+        return $this->sendResponse(new OrderResource($order), 'Order placed.');
     }
 
 }
