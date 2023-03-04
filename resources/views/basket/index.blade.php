@@ -44,12 +44,15 @@
                                                                     {{ $product->title }}
                                                                 </a>
                                                             </h4>
-                                                            <span>
+
+                                                            @if($product->fields)
+                                                                <span>
                                                                 <em>Вес:</em> {{ $product->fields->weight }}
-                                                            </span>
-                                                            <span>
-                                                                <em>Цвет:</em> {{ $product->fields->color }}
-                                                            </span>
+                                                                </span>
+                                                                    <span>
+                                                                    <em>Цвет:</em> {{ $product->fields->color }}
+                                                                </span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </td>

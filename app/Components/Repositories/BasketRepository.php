@@ -17,8 +17,8 @@ class BasketRepository extends BaseRepository
 
     public function getList(): Collection
     {
-        return $this->getListProducts()
-            ->toQuery()
+        return $this->find()
+            ->byUser()
             ->with([
                 'product' => function ($q) {
                     $q->with('fields');
