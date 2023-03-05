@@ -10,7 +10,10 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * Class Controller
  * @package App\Http\Controllers
- * @OA\Info(title="Интернет-магазин API", version="0.1")
+ * @OA\Info(
+ *     version="1.0.0",
+ *     title="Интернет-магазин API",
+ * )
  */
 class Controller extends BaseController
 {

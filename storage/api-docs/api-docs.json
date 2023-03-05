@@ -3,17 +3,39 @@
     "info": {
         "title": "Интернет-магазин API",
         "description": "Class Controller",
-        "version": "0.1"
+        "version": "1.0.0"
     },
     "paths": {
         "/api/auth/login": {
             "post": {
                 "tags": [
-                    "Auth"
+                    "auth"
                 ],
-                "operationId": "authLogin",
+                "operationId": "login",
                 "requestBody": {
-                    "$ref": "App/ApiDoc/Auth/LoginRequest"
+                    "request": "LoginRequest",
+                    "description": "Auth request fields",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "admin@mail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "qwerty"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
@@ -21,7 +43,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/LoginSuccessResponse"
+                                    "$ref": "#/components/schemas/SuccessResponse"
                                 }
                             }
                         }
@@ -52,11 +74,41 @@
         "/api/auth/register": {
             "post": {
                 "tags": [
-                    "Auth"
+                    "auth"
                 ],
-                "operationId": "authRegister",
+                "operationId": "register",
                 "requestBody": {
-                    "$ref": "App/ApiDoc/Auth/RegisterRequest"
+                    "request": "RegistrationRequest",
+                    "description": "Registration request body",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "admin@mail.com"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "8-777-486-89-89"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "qwerty"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "qwerty"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
@@ -81,9 +133,9 @@
     },
     "components": {
         "schemas": {
-            "LoginSuccessResponse": {
-                "title": "Login response",
-                "description": "Success auth response",
+            "SuccessResponse": {
+                "title": "Success response",
+                "description": "Success response",
                 "properties": {
                     "success": {
                         "type": "boolean",
@@ -94,14 +146,18 @@
                         "example": "User signed in."
                     },
                     "data": {
-                        "title": "Validation errors",
-                        "description": "Validation errors object",
+                        "title": "Data",
+                        "description": "Success response object",
                         "properties": {
-                            "user_name": {
-                                "type": "string"
+                            "field1": {
+                                "type": "string",
+                                "example": "Example string"
                             },
-                            "token": {
-                                "type": "string"
+                            "field2": {
+                                "type": "array",
+                                "items": {
+                                    "example": "The field2 field is required."
+                                }
                             }
                         },
                         "type": "object"
@@ -157,7 +213,7 @@
     },
     "tags": [
         {
-            "name": "Auth",
+            "name": "auth",
             "description": "Class AuthController"
         }
     ]

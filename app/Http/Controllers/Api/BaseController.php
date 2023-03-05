@@ -6,6 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 
+/**
+ * Базовый класс для работы с API
+ *
+ * Class BaseController
+ * @package App\Http\Controllers\Api
+ */
 class BaseController extends Controller
 {
 
